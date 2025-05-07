@@ -12,7 +12,7 @@ except ImportError:
     ctypes.windll.user32.MessageBoxW(0, "We need vlc to run, please download it..\n")
     webbrowser.open("https://www.videolan.org/vlc/")
     sys.exit()
-video_folder = "videos"
+video_folder = "Videos"
 video_files = [f for f in os.listdir(video_folder) if f.endswith(".mp4")]
 
 if not video_files:
@@ -25,15 +25,7 @@ if not video_files:
 
 playing = random.choice(video_files)
 path = os.path.join(video_folder, playing)
-print(f"Đang chơi video: {path}")
-
-if not os.path.exists(path):
-    messagebox.showerror(
-        "Lỗi",
-        f"Không tìm thấy video '{path}' trong thư mục.",
-    )
-    sys.exit(1)
-
+print(f"Playing: {path}")
 instance = vlc.Instance()
 player = instance.media_player_new()
 media = instance.media_new(path)
